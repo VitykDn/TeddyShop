@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Toy>
+@{
+    ViewData["Title"] = "Toys";
+}
+@*<h1>Toys</h1>
+<div>
+    @foreach (var item in Model)
+    {
+        <div class="col-4">
+            <img src="/media/toys/@item.Image" class="img-fluid" alt="" />
+            <h4>@item.Name</h4>
+            <div>
+                @Html.Raw(item.Size)
+            </div>
+            <p>@item.Price.ToString("C2")</p>
+            <p>
+                <a class="btn btn-primary" href="#">Add to Cart</a>
+            </p>
+        </div>
+    }
+
+
+@if (ViewBag.TotalPages > 1)
+{
+    <div class="d-flex w-100 justify-content-center">
+        <pagination page-count="@ViewBag.TotalPages" page-number="@ViewBag.PageNumber"
+                page-range="@ViewBag.PageRange"></pagination>
+    </div>
+}
+</div>*@
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Toys</h2>
+        </div>
+       
+    </div>
+</div>
+<br />
+
+<table class="table " style="width:100%; ">
+    <thead>
+        <tr>
+            <th>
+                Picture
+            </th>
+            <th>
+                Toy Name
+            </th>
+            <th>
+                Toy Size
+            </th>
+            <th>
+                Toy Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <th width="50%">
+                    <img src="/media/toys/@obj.Image" style="width:300px;height:300px;" alt="testPic">
+                </th>
+                <td width="10%">
+                    @obj.Name
+                </td>
+                <td width="10%">
+                    @obj.Size
+                </td>
+                <td width="10%">
+                    @obj.Price
+                </td>
+                <td width="20%">
+                    <div class="w-75 btn-group" role="group">
+                        <a class="btn btn-primary" asp-controller="Cart" asp-action="Add" asp-route-id="@obj.Id">Add to cart</a>
+
+                    </div>
+                    <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Toy" asp-action="Delete" asp-route-id="@obj.Id"
+                       class="btn btn-primary mg-15" style="margin:2px;"><i class="bi bi-trash"></i>Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
