@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ToyShopV2.Infrastructure;
+using ToyShopV2.Infrastructure.Interface;
+using ToyShopV2.Infrastructure.Repository;
 using ToyShopV2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +29,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = true;
 });
-
+//builder.Services.AddTransient<IAllOrders, OrderRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -54,7 +56,7 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Toys}/{action=Index}/{id?}");
 
 var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<DataContext>();
 SeedData.SeedDatabase(context);

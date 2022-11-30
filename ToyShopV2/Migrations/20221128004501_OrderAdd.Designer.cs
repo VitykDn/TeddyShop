@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToyShopV2.Infrastructure;
 
@@ -11,9 +12,10 @@ using ToyShopV2.Infrastructure;
 namespace ToyShopV2.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221128004501_OrderAdd")]
+    partial class OrderAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -327,13 +329,11 @@ namespace ToyShopV2.Migrations
                     b.Property<int>("ToyId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ToyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("ToyId");
 
                     b.ToTable("OrderDetail");
                 });
@@ -436,7 +436,15 @@ namespace ToyShopV2.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ToyShopV2.Models.Toy", "Toy")
+                        .WithMany()
+                        .HasForeignKey("ToyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
+
+                    b.Navigation("Toy");
                 });
 
             modelBuilder.Entity("ToyShopV2.Models.Cart", b =>

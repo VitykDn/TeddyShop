@@ -4,7 +4,7 @@ namespace ToyShopV2.Models
 {
     public class CartItem
     {
-        
+        public int Id { get; set; }
         public int ToyId { get; set; }
         public string ToyName { get; set; }
         public int Quantity { get; set; }

@@ -9,7 +9,10 @@ namespace ToyShopV2.Infrastructure
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { }
             public DbSet<Toy>Toys { get; set; }
-            public DbSet<Order>Orders { get; set; }
             public DbSet<Cart>Carts { get; set; }
+            public DbSet<CartItem>CartItems { get; set; }
+            public DbSet<Order>Orders { get; set; }
+            public DbSet<OrderDetail> OrderDetail { get; set; }
+
     }
 }

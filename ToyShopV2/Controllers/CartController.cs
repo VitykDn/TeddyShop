@@ -90,16 +90,6 @@ namespace ToyShopV2.Controllers
 
             return RedirectToAction("Index", "Toys");
         }
-        public IActionResult CreateOrder()
-        {
-            List<CartItem> cart = HttpContext.Session.GetJson<List<CartItem>>("Cart") ?? new List<CartItem>();
-            Cart cartOrder = new()
-            {
-                CartItems = cart,
-                GrandTotal = cart.Sum(x => x.Quantity * x.Price)
-            };
-            
-            return View(cartOrder);
-        }
+       
     }
 }
