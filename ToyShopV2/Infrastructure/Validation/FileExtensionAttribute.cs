@@ -15,7 +15,7 @@ namespace ToyShopV2.Infrastructure.Validation
 
                 if (!result)
                 {
-                    return new ValidationResult("Allowed extensions are jpg and png");
+                    return new ValidationResult("Дозволені фориати: jpg і png");
                 }
             }
 

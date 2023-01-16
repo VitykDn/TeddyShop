@@ -41,7 +41,7 @@ namespace ToyShopV2.Controllers
 
             HttpContext.Session.SetJson("Cart", cart);
 
-            TempData["Success"] = "The product has been added!";
+            TempData["Success"] = "Продукт додано";
 
             return Redirect(Request.Headers["Referer"].ToString());
         }
@@ -61,7 +61,7 @@ namespace ToyShopV2.Controllers
 
             HttpContext.Session.SetJson("Cart", cart);
 
-            TempData["Success"] = "The product has been decreased!";
+            //TempData["Success"] = "Продукт зменшено";
 
             return Redirect(Request.Headers["Referer"].ToString());
         }
@@ -80,7 +80,7 @@ namespace ToyShopV2.Controllers
                 HttpContext.Session.SetJson("Cart", cart);
             }
 
-            TempData["Success"] = "The product has been removed!";
+            TempData["Success"] = "Продукт забрано з корзини";
 
             return RedirectToAction("Index", "Toys");
         }

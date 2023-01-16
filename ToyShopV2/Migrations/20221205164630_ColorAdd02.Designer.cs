@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToyShopV2.Infrastructure;
 
@@ -11,9 +12,10 @@ using ToyShopV2.Infrastructure;
 namespace ToyShopV2.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221205164630_ColorAdd02")]
+    partial class ColorAdd02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,10 +252,6 @@ namespace ToyShopV2.Migrations
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Colors")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -386,12 +384,7 @@ namespace ToyShopV2.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ToyId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ToyId");
 
                     b.ToTable("ToyColors");
                 });
@@ -465,13 +458,6 @@ namespace ToyShopV2.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("ToyShopV2.Models.ToyColor", b =>
-                {
-                    b.HasOne("ToyShopV2.Models.Toy", null)
-                        .WithMany("Colors")
-                        .HasForeignKey("ToyId");
-                });
-
             modelBuilder.Entity("ToyShopV2.Models.Cart", b =>
                 {
                     b.Navigation("CartItems");
@@ -480,11 +466,6 @@ namespace ToyShopV2.Migrations
             modelBuilder.Entity("ToyShopV2.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("ToyShopV2.Models.Toy", b =>
-                {
-                    b.Navigation("Colors");
                 });
 #pragma warning restore 612, 618
         }

@@ -55,7 +55,7 @@ namespace ToyShopV2.Controllers
                     return Redirect(loginVM.ReturnUrl ?? "/");
                 }
 
-                ModelState.AddModelError("", "Invalid username or password");
+                ModelState.AddModelError("", "Неправильний логін або пароль");
             }
 
             return View(loginVM);

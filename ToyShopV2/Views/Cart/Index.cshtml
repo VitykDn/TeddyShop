@@ -6,11 +6,11 @@
 {
     <table class="table">
         <tr>
-            <th>Toy</th>
-            <th>Quantity</th>
+            <th>Іграшка</th>
+            <th>Кількість</th>
             <th></th>
-            <th>Price</th>
-            <th>Total</th>
+            <th>Ціна</th>
+            <th>Загальна ціна</th>
 
         </tr>
         @foreach (var item in Model.CartItems)
@@ -26,7 +26,8 @@
                         -
                     </a>
                     <a class="btn btn-danger btn-sm" asp-action="Remove" asp-route-id="@item.ToyId">
-                        Remove
+                        <i class="bi bi-x-circle"></i>
+
                     </a>
                 </td>
                 <td>@item.Price.ToString("C2")</td>
@@ -38,8 +39,8 @@
         </tr>
         <tr>
             <td class="text-right" colspan="4">
-                <a class="btn btn-danger" asp-action="Clear">Clear Cart</a>
-                <a class="btn btn-primary" asp-controller="Order" asp-action="Create">Proceed</a>
+                <a class="btn btn-primary" asp-controller="Order" asp-action="Create">Продовжити</a>
+                <a class="btn btn-danger" asp-action="Clear">Очистити корзину</a>
             </td>
         </tr>
     </table>
@@ -48,6 +49,6 @@
 }
 else
 {
-    <h3 class="display-4 text-center">Your cart is empty.</h3>
+    <h3 class="display-4 text-center">Корзина порожня</h3>
 
 }

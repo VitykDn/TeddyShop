@@ -10,43 +10,22 @@ namespace ToyShopV2.Infrastructure
         {
             context.Database.Migrate();
 
-            if (!context.Toys.Any())
+            if (!context.ToyColors.Any())
             {
-               
 
-                context.Toys.AddRange(
-                        new Toy
-                        {
-                            Name = "Test",
-                            Size = "120",
-                            Price = 1.50M,
-                            Color = "Red",
-                            Image = "test.jpg"
-                        },
-                        new Toy
-                        {
-                            Name = "Heart",
-                            Size = "new",
-                            Price = 21.50M,
-                            Color = "Blue",
-                            Image = "test2.jpg"
-                        },
-                        new Toy
-                        {
-                            Name = "Test3",
-                            Size = "120",
-                            Price = 1.50M,
-                            Color = "Red",
-                            Image = "test.jpg"
-                        },
-                        new Toy
-                        {
-                            Name = "Heart4",
-                            Size = "new",
-                            Price = 21.50M,
-                            Color = "Blue",
-                            Image = "test2.jpg"
-                        }
+                context.ToyColors.AddRange(
+
+                    new ToyColor() { Name = "Білий" },
+                    new ToyColor() { Name = "Молочний" },
+                    new ToyColor() { Name = "Сірий" },
+                    new ToyColor() { Name = "Персиковий," },
+                    new ToyColor() { Name = "Рижий" },
+                    new ToyColor() { Name = "Жовтий" },
+                    new ToyColor() { Name = "Рожевий" },
+                    new ToyColor() { Name = "Червоний" },
+                    new ToyColor() { Name = "Зелений" },
+                    new ToyColor() { Name = "Коричневий" }
+
                 );
 
                 context.SaveChanges();

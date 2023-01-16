@@ -42,16 +42,19 @@
     <thead>
         <tr>
             <th>
-                Picture
+                Зображення
             </th>
             <th>
-                Toy Name
+                Назва 
             </th>
             <th>
-                Toy Size
+                Розмір
             </th>
             <th>
-                Toy Price
+                Кольори
+            </th>
+            <th>
+                Ціна
             </th>
             <th></th>
         </tr>
@@ -60,27 +63,25 @@
         @foreach (var obj in Model)
         {
             <tr>
-                <th width="50%">
+                <th width="40%">
                     <img src="/media/toys/@obj.Image" style="width:300px;height:300px;" alt="testPic">
                 </th>
                 <td width="10%">
                     @obj.Name
                 </td>
-                <td width="10%">
+                <td width="5%">
                     @obj.Size
                 </td>
-                <td width="10%">
+                <td width="30%">@obj.Color</td>
+                <td width="5%">
                     @obj.Price
                 </td>
-                <td width="20%">
+                <td width="10%">
                     <div class="w-75 btn-group" role="group">
-                        <a class="btn btn-primary" asp-controller="Cart" asp-action="Add" asp-route-id="@obj.Id">Add to cart</a>
+                        <a class="btn btn-primary" asp-controller="Cart" asp-action="Add" asp-route-id="@obj.Id"><i class="bi bi-bag-plus"></i></a>
 
                     </div>
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Toy" asp-action="Delete" asp-route-id="@obj.Id"
-                       class="btn btn-primary mg-15" style="margin:2px;"><i class="bi bi-trash"></i>Delete</a>
-                    </div>
+                    
                 </td>
             </tr>
         }

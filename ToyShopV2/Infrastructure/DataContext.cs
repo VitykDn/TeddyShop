@@ -13,6 +13,9 @@ namespace ToyShopV2.Infrastructure
             public DbSet<CartItem>CartItems { get; set; }
             public DbSet<Order>Orders { get; set; }
             public DbSet<OrderDetail> OrderDetail { get; set; }
+            public DbSet<ToyColor> ToyColors { get; set; }
+
+            
 
     }
 }

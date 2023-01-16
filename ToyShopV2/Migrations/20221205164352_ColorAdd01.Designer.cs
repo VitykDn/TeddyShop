@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToyShopV2.Infrastructure;
 
@@ -11,9 +12,10 @@ using ToyShopV2.Infrastructure;
 namespace ToyShopV2.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221205164352_ColorAdd01")]
+    partial class ColorAdd01
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -250,10 +252,6 @@ namespace ToyShopV2.Migrations
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Colors")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -374,28 +372,6 @@ namespace ToyShopV2.Migrations
                     b.ToTable("Toys");
                 });
 
-            modelBuilder.Entity("ToyShopV2.Models.ToyColor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ToyId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ToyId");
-
-                    b.ToTable("ToyColors");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -465,13 +441,6 @@ namespace ToyShopV2.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("ToyShopV2.Models.ToyColor", b =>
-                {
-                    b.HasOne("ToyShopV2.Models.Toy", null)
-                        .WithMany("Colors")
-                        .HasForeignKey("ToyId");
-                });
-
             modelBuilder.Entity("ToyShopV2.Models.Cart", b =>
                 {
                     b.Navigation("CartItems");
@@ -480,11 +449,6 @@ namespace ToyShopV2.Migrations
             modelBuilder.Entity("ToyShopV2.Models.Order", b =>
                 {
                     b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("ToyShopV2.Models.Toy", b =>
-                {
-                    b.Navigation("Colors");
                 });
 #pragma warning restore 612, 618
         }

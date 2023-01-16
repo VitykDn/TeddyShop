@@ -60,7 +60,7 @@ namespace ToyShopV2.Controllers
             {
                 dataContext.Add(order);
                 await dataContext.SaveChangesAsync();
-                TempData["Success"] = "The order has been created!";
+                TempData["Success"] = "Замовлення створено";
                 OrderEmail(order);
                 return RedirectToAction("Index", "Toys");
             }
@@ -70,9 +70,9 @@ namespace ToyShopV2.Controllers
 
         private void OrderEmail(Order order)
         {
-            var senderEmail = new MailAddress("lektorv97@gmail.com", "Me");
-            var receiverEmail = new MailAddress("lektorv97@gmail.com", "Receiver");
-            var password = "hcbzmybdrfemrxub";
+            var senderEmail = new MailAddress("kurasartur25@gmail.com", "Me");
+            var receiverEmail = new MailAddress("kurasartur25@gmail.com", "Receiver");
+            var password = "yqiseuvvhoyvhhte";
             var smtp = new SmtpClient
             {
                 Host = "smtp.gmail.com",
@@ -85,16 +85,17 @@ namespace ToyShopV2.Controllers
             List<string> orderToys = new List<string>();
             foreach (var item in order.OrderDetails)
             {
-                orderToys.Add("Назва іграшки: " + item.ToyName +"  Кількість іграшок: " 
-                    + item.Quantity + " Ціна Одиниці:" + item.Price);
+                orderToys.Add(item.ToyName +"  Кількість: " 
+                    + item.Quantity + " Ціна:" + item.Price);
             }
             using (var mess = new MailMessage(senderEmail, receiverEmail)
             {
                 Subject = $"Order: {order.Id}",
-                Body = $"Замовник:{order.Name}  Номер:{order.PhoneNumber} Email:{order.Email}\n" +
-                $"Ціна Замовлення:{order.OrderPrice} Дата Замовлення:{order.OrderDate}\n\n" +
+                Body = $"Замовник:{order.Name}  Номер:{order.PhoneNumber}  Email:{order.Email}\n" +
+                $"Ціна Замовлення:{order.OrderPrice}   Дата Замовлення:{order.OrderDate}\n\n" +
                 $"Замовлення:\n" +
-                $"{string.Join("\n", orderToys)}"
+                $"{string.Join("\n", orderToys)}\n"+
+                $"Коментар: {order.Comment}"
             })
             {
                 smtp.Send(mess);
